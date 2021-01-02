@@ -470,6 +470,9 @@ class JdSeckill(object):
         """访问商品的抢购链接（用于设置cookie等"""
         logger.info('用户:{}'.format(self.get_username()))
         logger.info('商品名称:{}'.format(self.get_sku_title()))
+        logger.info('抢购数量:{}瓶'.format(self.seckill_num))
+        logger.info('设置的eid:{}'.format(global_config.getRaw('config', 'eid'),))
+        logger.info('设置的fp:{}'.format(global_config.getRaw('config', 'fp'),))
         self.timers.start()
         self.seckill_url[self.sku_id] = self.get_seckill_url()
         logger.info('访问商品的抢购连接...')
