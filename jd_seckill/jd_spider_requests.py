@@ -555,8 +555,10 @@ class JdSeckill(object):
         logger.info('用户:{}'.format(self.get_username()))
         logger.info('商品名称:{}'.format(self.get_sku_title()))
         logger.info('抢购数量:{}瓶'.format(self.seckill_num))
-        logger.info('设置的eid:{}'.format(global_config.getRaw('config', 'eid'),))
-        logger.info('设置的fp:{}'.format(global_config.getRaw('config', 'fp'),))
+        logger.info('配置的eid:{}'.format(global_config.getRaw('config', 'eid'),))
+        logger.info('获取的eid:{}'.format(self.jd_tdufp.get("eid") if self.jd_tdufp.get("eid") else 'NULL', ))
+        logger.info('配置的fp:{}'.format(global_config.getRaw('config', 'fp'),))
+        logger.info('获取的fp:{}'.format(self.jd_tdufp.get("fp") if self.jd_tdufp.get("fp") else 'NULL', ))
         self.timers.start()
         self.seckill_url[self.sku_id] = self.get_seckill_url()
         logger.info('访问商品的抢购连接...')
@@ -658,7 +660,7 @@ class JdSeckill(object):
             'token': token,
             'pru': ''
         }
-        logger.info("order_date：{}", data)
+        logger.info("order_data：{}", data)
         return data
 
     def submit_seckill_order(self):
