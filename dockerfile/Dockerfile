@@ -28,10 +28,13 @@ RUN set -ex; \
         && apt-get install -y --no-install-recommends \
                    git \
                    qrencode \
-                   zbar-tools; \
+                   zbar-tools \
+                   dos2unix; \
       \
+      dos2unix /usr/local/bin/docker-python-entrypoint; \
+      dos2unix /usr/local/bin/qrcode; \
       # clone jd seckill code.
-      git clone -b $GIT_BRANCH https://github.com/huanghyw/jd_seckill.git /app; \
+      git clone -b $GIT_BRANCH https://github.com/dukerider2015/python_ko_mt.git /app; \
       cd /app \
         && rm -rf .git; \
       \
