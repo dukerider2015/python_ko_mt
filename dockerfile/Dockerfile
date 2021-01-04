@@ -2,7 +2,7 @@ FROM python:3.8-slim-buster
 
 LABEL MAINTAINER="@weidonggg"
 
-ENV GIT_BRANCH master
+ENV GIT_BRANCH enhance
 ENV TIMEZONE Asia/Shanghai
 
 COPY docker-python-entrypoint /usr/local/bin/
