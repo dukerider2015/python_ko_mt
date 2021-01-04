@@ -660,7 +660,7 @@ class JdSeckill(object):
             'token': token,
             'pru': ''
         }
-        logger.info("order_data：{}", data)
+        logger.info("order_date：%s", data)
         return data
 
     def submit_seckill_order(self):
