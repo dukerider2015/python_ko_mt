@@ -429,6 +429,9 @@ class JdSeckill(object):
         多进程进行抢购
         work_count：进程数量
         """
+        if global_config.getRaw('config', 'work_count') != '':
+            work_count = int(global_config.getRaw('config', 'work_count'))
+        logger.info("抢购线程数:%i", work_count)
         with ProcessPoolExecutor(work_count) as pool:
             for i in range(work_count):
                 pool.submit(self.seckill)
@@ -466,7 +469,7 @@ class JdSeckill(object):
             来判断抢购的任务是否可以继续运行
         """
         buy_time = self.timers.buytime_get()
-        continue_time = int(global_config.getRaw('config','continue_time'))
+        continue_time = int(global_config.getRaw('config', 'continue_time'))
         stop_time = datetime.strptime(
             (buy_time + timedelta(minutes=continue_time)).strftime("%Y-%m-%d %H:%M:%S.%f"),
             "%Y-%m-%d %H:%M:%S.%f"
