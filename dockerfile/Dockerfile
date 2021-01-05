@@ -38,7 +38,7 @@ RUN set -ex; \
       dos2unix /usr/local/bin/qrcode; \
       # clone jd seckill code.
       git clone -b $GIT_BRANCH https://github.com/dukerider2015/python_ko_mt.git /app; \
-      \
+      cd /app; \
        \
         \
       sed -i \
