@@ -1,12 +1,10 @@
-#!/usr/bin/env python
-# -*- encoding=utf8 -*-
-
+# -*- coding:utf-8 -*-
 import time
 import requests
 import json
 
 from datetime import datetime
-
+import datetime as dt
 from .jd_logger import logger
 from .config import global_config
 
@@ -14,11 +12,28 @@ from .config import global_config
 class Timer(object):
     def __init__(self, sleep_interval=0.5):
         # '2018-09-28 22:45:50.000'
-        self.buy_time = datetime.strptime(global_config.getRaw('config', 'buy_time'), "%Y-%m-%d %H:%M:%S.%f")
-        self.buy_time_ms = int(time.mktime(self.buy_time.timetuple()) * 1000.0 + self.buy_time.microsecond / 1000)
-        self.sleep_interval = sleep_interval
 
+        jd_time = self.jd_time()
+        buy_time = time.localtime(jd_time / 1000)
+        buy_time = time.strftime("%Y-%m-%d %H:%M:%S", buy_time)
+        str_date = buy_time.split(" ")[0]
+        buy_time = str_date+" "+global_config.getRaw('config','buy_time')
+        self.buy_time = datetime.strptime(buy_time, "%Y-%m-%d %H:%M:%S.%f")
+
+        self.buy_time_ms = int(time.mktime(self.buy_time.timetuple()) * 1000.0 + self.buy_time.microsecond / 1000)
+        if jd_time > self.buy_time_ms:
+            self.buy_time = (self.buy_time+dt.timedelta(days=1)).strftime("%Y-%m-%d %H:%M:%S.%f")
+            self.buy_time = datetime.strptime(self.buy_time, "%Y-%m-%d %H:%M:%S.%f")
+            self.buy_time_ms = int(time.mktime(self.buy_time.timetuple()) * 1000.0 + self.buy_time.microsecond / 1000)
+
+        self.sleep_interval = sleep_interval
         self.diff_time = self.local_jd_time_diff()
+
+    def __change_time(self):
+
+
+
+        pass
 
     def jd_time(self):
         """
