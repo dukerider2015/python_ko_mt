@@ -1,6 +1,5 @@
 #!/bin/bash
 set -eo pipefail
-cd /app
 git pull -f
 sed -i \
   -e 's/^eid.*/eid=$JD_SECKILL_EID/g' \
