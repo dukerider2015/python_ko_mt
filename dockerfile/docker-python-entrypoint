@@ -5,6 +5,7 @@ sed -i \
   -e 's/^eid.*/eid=$JD_SECKILL_EID/g' \
   -e 's/^fp.*/fp=$JD_SECKILL_FP/g' \
   -e 's/^sku_id.*/sku_id=$JD_SECKILL_SKU_ID/g' \
+  -e 's/^buy_count.*/buy_count=$JD_SECKILL_BUY_COUNT/g' \
   -e 's/^buy_time.*/buy_time=$JD_SECKILL_BUY_TIME/g' \
   -e 's/^continue_time.*/continue_time=$JD_SECKILL_CONTINUE_TIME/g' \
   -e 's/^work_count.*/work_count=$JD_SECKILL_WORK_COUNT/g' \
